@@ -1,0 +1,16 @@
+/* .container {
+    border: 2px solid #999;
+} */
+
+.realEstate {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    display: inline-block;
+    background: #2d3246;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#title {
+    font-size: 25px;
+}

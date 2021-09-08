@@ -1,0 +1,12 @@
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar {
+    background-color: #2d3246;
+    padding: 10px;
+}
+
+.navbar-brand {
+    color: aqua;
+}

@@ -1,0 +1,19 @@
+.realEstateComponent {
+    align-tracks: center;
+    background-color: #2d3246;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.lab,
+.form-check-label {
+    display: inline-block;
+    clear: left;
+    width: 250px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+input {
+    display: inline-block;
+}

@@ -1,0 +1,53 @@
+<div class="container-fluid col">
+    <div class="col">
+        <div (click)="onSelect(realEstate)" *ngFor="let realEstate of realEstates$">
+            <div>
+                <div class="col-md-12 realEstate">
+                    <div class="col-md-6">
+                        <div class="image">
+                            <img [src]="realEstate.imageUrl">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="details">
+                            <!-- href="/{{realEstate.id}}" -->
+                            <a id="title" [routerLink]="['', realEstate.id]">{{realEstate.title}}</a>
+                            <div id="address">Adresa: {{realEstate.address}}, {{realEstate.city}}</div>
+                            <div id="contact">Telefon: {{realEstate.contact}}</div>
+                            <div id="price">Cena: {{realEstate.price}}e</div>
+                            <div id="area">Povrsina: {{realEstate.area}}m<sup>2</sup></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div id="initial-profile-id">
+    <div class="two-realEstates-div" *ngFor="let realEstate of realEstates;">
+        <div class="profile-div-left">
+            <div class="left-side">
+                <img style="display:block; width:100%; height:100%;" id="baseImage" [src]="realEstate.imageUrl">
+            </div>
+            <div class="right-side">
+                <p class="title">{{realEstate.title}}</p>
+                <p class="address">Adresa: {{realEstate.address}}, {{realEstate.city}}</p>
+                <p class="contact">Telefon: {{realEstate.contact}}</p>
+                <p class="price">Cena: {{realEstate.price}}e</p>
+                <p class="area">Povrsina: {{realEstate.area}}m<sup>2</sup></p>
+            </div>
+        </div>
+        <div class="profile-div-right">
+            <div class="left-side">
+                <img style="display:block; width:100%; height:100%;" id="baseImage" [src]="realEstate.imageUrl">
+            </div>
+            <div class="right-side">
+                <p class="title">{{realEstate.title}}</p>
+                <p class="address">Adresa: {{realEstate.address}}, {{realEstate.city}}</p>
+                <p class="contact">Telefon: {{realEstate.contact}}</p>
+                <p class="price">Cena: {{realEstate.price}}e</p>
+                <p class="area">Povrsina: {{realEstate.area}}m<sup>2</sup></p>
+            </div>
+        </div>
+    </div>
+</div> -->
