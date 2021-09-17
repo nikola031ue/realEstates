@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RealEstate } from '../models/realEstate';
 import { Observable } from 'rxjs';
 
@@ -7,12 +7,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RealEstateService {
-  private _url = "../assets/data/data.json";
-
+  BACKEND_BASE = "http://localhost:3000";
+  
+  
   constructor(private http: HttpClient) { }
 
   getRealEstates(): Observable<RealEstate[]> {
-    return this.http.get<RealEstate[]>(this._url);
+    return this.http.get<RealEstate[]>(this.BACKEND_BASE + "/realEstates/listAll");
+  }
+
+  getRealEstate(_id): Observable<RealEstate> {
+    return this.http.get<RealEstate>(this.BACKEND_BASE + "/realEstates/listById/" + _id);
   }
   
+  addRealEstate(realEstate: RealEstate): Observable<RealEstate> {
+    return this.http.post<RealEstate>(this.BACKEND_BASE + "/realEstates/add", realEstate);
+  }
 }

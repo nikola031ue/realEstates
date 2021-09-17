@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 let realEstate = new Schema({
     id: {
-        type: Number
+        type: String
     },
     title: {
         type: String

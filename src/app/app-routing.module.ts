@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddRealEstateComponent } from './add-real-estate/add-real-estate.component';
-import { HomeComponent } from './home/home.component';
 import { RealEstateComponent } from './real-estate/real-estate.component';
 import { ViewRealEstateComponent } from './view-real-estate/view-real-estate.component';
 

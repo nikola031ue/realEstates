@@ -48,7 +48,7 @@ router.get('/listAll', function(req, res, next) {
         if (err) {
             res.send('err');
         } else {
-            res.send({ status: 200, realEstates: response });
+            res.send(response);
         }
     });
 
@@ -66,13 +66,13 @@ router.get('/listByCategory', function(req, res, next) {
 
 });
 // moze i vise argumenata gde je idQuery ide JSON sa parametrima
-router.get('/listById', function(req, res, next) {
-    const idQuery = req.query.id;
+router.get('/listById/:id', function(req, res, next) {
+    const idQuery = req.params.id;
     realEstateModel.findById(idQuery, function(err, response) {
         if (err) {
             res.send('err');
         } else {
-            res.send({ status: 200, resultsFound: response.length, realEstates: response });
+            res.send(response);
         }
     });
 

@@ -1,38 +1,36 @@
-<div class="container">
-    <div id="title">
-        <p><span class="property" style="font-size: 30px; color: red;">        <h1>sdadasdsad</h1>
-            Naslov {{re[_id].title}}</span>
-            <span class="property" style="font-size: 24px;">, Grad {{re[_id].city}}</span>
+<div class="container-fluid">
+    <div>
+        <p><span class="property" style="font-size: 30px; color: red;">
+            Naslov {{re.title}}</span>
+            <span class="property" style="font-size: 24px;">, Grad {{re.city}}</span>
         </p>
-        <h4>ID nekretnine: {{re[_id].id}}</h4>
+        <h4>ID nekretnine: {{re.id}}</h4>
     </div>
     <div id="upper-div-id">
         <div id="image-slider-id">
-            <img id="images" src='{{re[_id].imageUrl}}'>
+            <img id="images" src='{{re.imageUrl}}'>
         </div>
     </div>
     <div id="lower-div-id">
-        <div>
-            <h3 style="font-weight: bold;">Dodatne informacije</h3>
-            <p><span class="property"></span>Kvadratura<span class="value">{{re[_id].area}}m<sup>2</sup></span></p>
-            <p><span class="property">Cena</span><span class="value">{{re[_id].price}}e</span></p>
-            <p><span class="property">Sprat</span><span class="value">{{re[_id].floor}}</span></p>
-            <p><span class="property">Ukupno spratova</span><span class="value">{{re[_id].totalFlors}}</span></p>
-            <p><span class="property">Broj soba</span><span class="value">{{re[_id].rooms}}</span></p>
-            <p><span class="property">Broj kupatila</span><span class="value">{{re[_id].bathrooms}}</span></p>
-            <hr>
-            <p><span class="property">Terasa</span><span class="value" *ngIf="re[_id].balcony == true;">DA</span></p>
-            <p><span class="property">Terasa</span><span class="value" *ngIf="re[_id].balcony == false;">NE</span></p>
-            <p><span class="property">Lift</span><span class="value" *ngIf="re[_id].elevator == true;">DA</span></p>
-            <p><span class="property">Lift</span><span class="value" *ngIf="re[_id].elevator == false;">NE</span></p>
-            <hr>
-            <h3 style="font-weight: bold;">Opis</h3>
-            <p><span class="property"></span><span class="value">{{re[_id].description}}</span></p>
-            <hr>
-            <h3 style="font-weight: bold;">Kontakt</h3>
-            <p><span class="property">Adresa</span><span class="value">{{re[_id].address}}</span></p>
-            <p><span class="property">Telefon</span><span class="value">{{re[_id].contact}}</span></p>
-            <hr>
-        </div>
+        <h3 style="font-weight: bold;">Dodatne informacije</h3>
+        <p><span class="property"></span>Kvadratura<span class="value">{{re.area}}m<sup>2</sup></span></p>
+        <p><span class="property">Cena</span><span class="value">{{re.price}}e</span></p>
+        <p><span class="property">Sprat</span><span class="value">{{re.floor}}</span></p>
+        <p><span class="property">Ukupno spratova</span><span class="value">{{re.totalFlors}}</span></p>
+        <p><span class="property">Broj soba</span><span class="value">{{re.rooms}}</span></p>
+        <p><span class="property">Broj kupatila</span><span class="value">{{re.bathrooms}}</span></p>
+        <hr>
+        <p><span class="property">Terasa</span><span class="value" *ngIf="re.balcony == true;">DA</span></p>
+        <p><span class="property">Terasa</span><span class="value" *ngIf="re.balcony == false;">NE</span></p>
+        <p><span class="property">Lift</span><span class="value" *ngIf="re.elevator == true;">DA</span></p>
+        <p><span class="property">Lift</span><span class="value" *ngIf="re.elevator == false;">NE</span></p>
+        <hr>
+        <h3 style="font-weight: bold;">Opis</h3>
+        <p><span class="property"></span><span class="value">{{re.description}}</span></p>
+        <hr>
+        <h3 style="font-weight: bold;">Kontakt</h3>
+        <p><span class="property">Adresa</span><span class="value">{{re.address}}</span></p>
+        <p><span class="property">Telefon</span><span class="value">{{re.contact}}</span></p>
+        <hr>
     </div>
 </div>

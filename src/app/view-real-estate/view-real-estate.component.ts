@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RealEstate } from '../models/realEstate';
@@ -11,26 +12,40 @@ import { RealEstateService } from '../service/real-estate.service';
 })
 export class ViewRealEstateComponent implements OnInit {
   
-  public _id;
+  public id;
   public realEstates$: RealEstate[] = [];
   errorMsg: any;
+  public re: any;
+  public fin;
+  baseURL = 'http://localhost/';
 
-  constructor(private res: RealEstateService, private route: ActivatedRoute ) { }
-  re = this.res.getRealEstates()
-    .subscribe(data => this.realEstates$ = data,
-    error => this.errorMsg = error);
+  constructor(private res: RealEstateService, private http: HttpClient,
+    private route: ActivatedRoute) {
+    let idP = parseInt(this.route.snapshot.paramMap.get('_id'));
+    this.id = idP;
+
+    this.res.getRealEstate(this.id)
+      .subscribe(data => {
+        console.log(data);
+        console.log("99999999999999999999");
+
+        this.re = data;
+      }, 
+        error => this.errorMsg = error);
+   }
   
+   
       
   
   ngOnInit(): void {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this._id = id;
-    console.log(this.errorMsg);
-
-    console.log(this._id);
-    console.log(this.re);
+    // this.re = this.getRealEstate();
   }
 
+  // getRealEstate() {
+  //   var id = this.route.snapshot.params['id'];
+  //   return this.http.get(this.baseURL + 'home/' + id).pipe(res => {return res});
+  // }
 
+  
   
 }

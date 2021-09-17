@@ -1,5 +1,5 @@
 export interface RealEstate {
-  id: number;
+  id: string;
   title: string;
   imageUrl: string;
   address: string;
