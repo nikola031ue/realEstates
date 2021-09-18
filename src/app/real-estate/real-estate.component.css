@@ -16,6 +16,20 @@
 }
 
 img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 90%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.float-child {
+    float: left;
+    padding: 5px;
+    width: 50%;
+}
+
+.description {
+    font-size: 17.5px;
+    font-weight: bold;
 }

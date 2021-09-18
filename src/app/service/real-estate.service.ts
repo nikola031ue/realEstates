@@ -17,7 +17,7 @@ export class RealEstateService {
   }
 
   getRealEstate(_id): Observable<RealEstate> {
-    return this.http.get<RealEstate>(this.BACKEND_BASE + "/realEstates/listById/" + _id);
+    return this.http.get<RealEstate>(this.BACKEND_BASE + "/realEstates/listById/" + _id).pipe(res => { return res;});
   }
   
   addRealEstate(realEstate: RealEstate): Observable<RealEstate> {

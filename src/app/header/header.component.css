@@ -5,8 +5,14 @@
 .navbar {
     background-color: #2d3246;
     padding: 10px;
+    border-bottom: rgba(255, 255, 255, 0.8);
+    border-style: groove;
 }
 
 .navbar-brand {
     color: aqua;
+}
+
+nav {
+    border-radius: 5px;
 }

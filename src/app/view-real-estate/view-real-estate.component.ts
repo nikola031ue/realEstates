@@ -20,25 +20,18 @@ export class ViewRealEstateComponent implements OnInit {
   baseURL = 'http://localhost/';
 
   constructor(private res: RealEstateService, private http: HttpClient,
-    private route: ActivatedRoute) {
-    let idP = parseInt(this.route.snapshot.paramMap.get('_id'));
+    private route: ActivatedRoute) {}
+  
+   
+  ngOnInit(): void {
+    var idP = this.route.snapshot.paramMap.get('id');
     this.id = idP;
-
     this.res.getRealEstate(this.id)
       .subscribe(data => {
         console.log(data);
-        console.log("99999999999999999999");
-
         this.re = data;
       }, 
         error => this.errorMsg = error);
-   }
-  
-   
-      
-  
-  ngOnInit(): void {
-    // this.re = this.getRealEstate();
   }
 
   // getRealEstate() {

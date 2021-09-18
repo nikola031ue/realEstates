@@ -3,6 +3,10 @@
     bottom: 0;
 }
 
+footer {
+    border-radius: 5px;
+}
+
 .context-dark,
 .bg-gray-dark,
 .bg-primary {
