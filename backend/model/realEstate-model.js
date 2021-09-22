@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let realEstate = new Schema({
-    id: {
-        type: String
-    },
     title: {
         type: String
     },

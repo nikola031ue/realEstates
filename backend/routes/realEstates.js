@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var router = express.Router();
 
 const mongoose = require('mongoose');
@@ -12,9 +13,31 @@ router.get('/', function(req, res, next) {
 //ovde se prave rute i maapiraju u ontrollers
 
 router.post('/add', function(req, res, next) {
+    //pravi prazan objekat u bazi
+    // let newRE = null;
+    // try {
+    //     newRe = JSON.stringify(req)
+    //     newRe = JSON.parse(newRe);
+    // } catch (e) {
+    //     newRE = req;
+    // }
+    // const realEstate = new realEstateModel(newRE);
+    // realEstate.save().then((document) => {
+    //     res.setHeader("Content-Type", "application/json");
+    //     res.status(200).json({ success: true, data: document, message: 'Dodato u bazu' });
+    // })
 
+    //Object { headers: {…}, status: 200, statusText: "OK", url: "http://localhost:3000/realEstates/add", ok: false, name: "HttpErrorResponse", message: "Http failure during parsing for http://localhost:3000/realEstates/add", error: {…} } ​
+    // error: Object { error: SyntaxError, text: "err" }
+    // headers: Object { normalizedNames: Map(0), lazyUpdate: null, lazyInit: lazyInit()
+    //  }
+    // message: "Http failure during parsing for http://localhost:3000/realEstates/add"
+    // name: "HttpErrorResponse"
+    // ok: false
+    // status: 200
+    // statusText: "OK"
+    // url: "http://localhost:3000/realEstates/add"
     let newRealEstate = new realEstateModel({
-        id: req.body.id,
         title: req.body.title,
         imageUrl: req.body.imageUrl,
         address: req.body.address,
@@ -36,9 +59,10 @@ router.post('/add', function(req, res, next) {
         if (err) {
             res.send('err');
         } else {
-            res.send({ status: 200, message: 'Real Estate add successfully', realEstateObj: newRealEstate });
+            res.send(newRealEstate);
         }
     });
+
 
 });
 

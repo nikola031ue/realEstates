@@ -11,7 +11,7 @@ export interface RealEstate {
   area: number;
   rooms: number;
   bathrooms: number;
-  totalFlors: number;
+  totalFloors: number;
   elevator: boolean;
   balcony: boolean;
   description: string;

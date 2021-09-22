@@ -4,4 +4,9 @@
     <router-outlet></router-outlet>
 
     <app-footer></app-footer>
+    <script>
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        };
+    </script>
 </div>

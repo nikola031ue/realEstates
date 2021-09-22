@@ -1,153 +1,102 @@
-<!-- <div class="container col realEstateComponent">
-    <h2 class="lab">Dodaj nekretninu</h2>
-    <br>
-    <form #realEstateForm="ngForm" novalidate *ngIf="!submitted" (ngSubmit)="onSubmit()">
-        <label for="title" class="lab">Naziv: </label>
-        <input name="title" type="text" ngModel #title="ngModel" required placeholder="Naziv">
-
-        <div ngModelGroup="address">
-            <br>
-            <h4 class="lab">Adresa: </h4>
-            <br><br>
-            <label class="lab" for="street">Ulica: </label>
-            <input name="street" type="text" ngModel #street="ngModel" required placeholder="Ulica">
-            <br><br>
-            <label class="lab" for="city">Grad: </label>
-            <input name="city" type="text" ngModel #city="ngModel" required placeholder="Grad">
-            <br><br>
-            <label class="lab" for="contact">Kontakt: </label>
-            <input name="contact" type="text" ngModel #contact="ngModel" required placeholder="Kontakt">
-        </div>
-
-        <div ngModelGroup="realEstate">
-            <br>
-            <h4 class="lab">Karakteristike: </h4>
-            <br><br>
-            <label class="lab" for="category">Kategorija: </label>
-            <input name="category" type="text" ngModel #category="ngModel" required placeholder="Kategorija">
-            <br><br>
-            <label for="floor" class="lab">Sprat: </label>
-            <input name="floor" type="number" ngModel #floor="ngModel" required placeholder="Sprat">
-            <br><br>
-            <label for="area" class="lab">Povrsina: </label>
-            <input name="area" type="number" ngModel #area="ngModel" required placeholder="m2">
-            <br><br>
-            <label for="rooms" class="lab">Sobe: </label>
-            <input name="rooms" type="number" ngModel #rooms="ngModel" required placeholder="Sobe">
-            <br><br>
-            <label for="bathrooms" class="lab">Kupatila: </label>
-            <input name="bathrooms" type="number" ngModel #bathrooms="ngModel" required placeholder="Kupatila">
-            <br><br>
-            <label for="totalFloors" class="lab">Ukupno spratova: </label>
-            <input name="totalFloors" type="number" ngModel #totalFloors="ngModel" required placeholder="Ukupno spratova">
-            <br><br>
-            <label for="elevator" class="lab">Lift: </label>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" ngModel #elevator="ngModel" type="radio" name="elevator" name="elevator" value="option1" checked>
-                <label class="form-check-label" for="elevator">Da</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" ngModel #elevator="ngModel" type="radio" name="elevator" name="elevator" value="option2" checked>
-                <label class="form-check-label" for="elevator">Ne</label>
-            </div>
-            <br><br>
-            <label for="balcony" class="lab">Balkon: </label>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" type="radio" name="balcony" ngModel #balcony="ngModel" name="balcony" value="option1" checked>
-                <label class="form-check-label" for="balcony">Da</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" type="radio" name="balcony" ngModel #balcony="ngModel" name="balcony" value="option2" checked>
-                <label class="form-check-label" for="balcony">Ne</label>
-            </div>
-            <br><br>
-            <label class="lab" for="imageUrl">Slika: </label>
-            <input name="imageUrl" type="text" ngModel #category="ngModel" required placeholder="URL slike">
-            <br><br>
-            <label for="description" class="lab">Opis: </label>
-            <textarea name="description" ngModel #description="ngModel" cols="50" placeholder="Opis"></textarea>
-        </div>
-        <br><br>
-        <button type="submit" [disabled]="!realEstateForm.value">Sacuvaj</button>
-        <br><br>
-    </form>
-    <span style="color: white;">{{realEstateForm.value | json}}</span>
-</div> -->
-
-<div class="container">
-    <div class="container col realEstateComponent">
+<div>
+    <div class="container-fluid col realEstateComponent">
 
         <h2 class="lab">Dodaj nekretninu</h2>
         <br><br>
-        <form #realEstateForm="ngForm" novalidate *ngIf="!submitted" (ngSubmit)="onSubmit()">
-            <label for="title" class="lab">Naziv: </label>
-            <input name="title" type="text" ngModel #title="ngModel" required placeholder="Naziv">
-
+        <form #addRealEstateForm="ngForm" novalidate *ngIf="!submitted" (ngSubmit)="addRe()">
+            <div class="form-group">
+                <label for="title" class="lab">Naziv: </label>
+                <input name="title" type="text" #title="ngModel" class="form-control" [(ngModel)]="re.title" required placeholder="Naziv">
+            </div>
             <br><br>
             <h4 class="lab">Adresa </h4>
             <br><br>
-            <label class="lab" for="street">Ulica: </label>
-            <input name="street" type="text" ngModel #street="ngModel" required placeholder="Ulica">
+            <div class="form-group">
+                <label class="lab" for="address">Ulica: </label>
+                <input name="address" type="text" #address="ngModel" class="form-control" [(ngModel)]="re.address" required placeholder="Ulica">
+            </div>
             <br><br>
-            <label class="lab" for="city">Grad: </label>
-            <input name="city" type="text" ngModel #city="ngModel" required placeholder="Grad">
+            <div class="form-group">
+                <label class="lab" for="city">Grad: </label>
+                <input name="city" type="text" #city="ngModel" class="form-control" [(ngModel)]="re.city" required placeholder="Grad">
+            </div>
             <br><br>
-            <label class="lab" for="contact">Kontakt: </label>
-            <input name="contact" type="text" ngModel #contact="ngModel" required placeholder="Kontakt">
-
-
-
+            <div class="form-group">
+                <label class="lab" for="contact">Kontakt: </label>
+                <input name="contact" type="text" #contact="ngModel" class="form-control" [(ngModel)]="re.contact" required placeholder="Kontakt">
+            </div>
             <br><br>
             <h4 class="lab">Karakteristike </h4>
             <br><br>
-            <label class="lab" for="category">Kategorija: </label>
-            <input name="category" type="text" ngModel #category="ngModel" required placeholder="Kategorija">
-            <br><br>
-            <label for="floor" class="lab">Sprat: </label>
-            <input name="floor" type="number" ngModel #floor="ngModel" required placeholder="Sprat">
-            <br><br>
-            <label for="area" class="lab">Povrsina: </label>
-            <input name="area" type="number" ngModel #area="ngModel" required placeholder="m2">
-            <br><br>
-            <label for="rooms" class="lab">Sobe: </label>
-            <input name="rooms" type="number" ngModel #rooms="ngModel" required placeholder="Sobe">
-            <br><br>
-            <label for="bathrooms" class="lab">Kupatila: </label>
-            <input name="bathrooms" type="number" ngModel #bathrooms="ngModel" required placeholder="Kupatila">
-            <br><br>
-            <label for="totalFloors" class="lab">Ukupno spratova: </label>
-            <input name="totalFloors" type="number" ngModel #totalFloors="ngModel" required placeholder="Ukupno spratova">
-            <br><br>
-            <label for="elevator" class="lab">Lift: </label>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" ngModel #elevator="ngModel" type="radio" name="elevator" name="elevator" value="da" checked>
-                <label class="form-check-label" for="elevator">Da</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" ngModel #elevator="ngModel" type="radio" name="elevator" name="elevator" value="ne">
-                <label class="form-check-label" for="elevator">Ne</label>
+            <div class="form-group">
+                <label class="lab" for="category">Kategorija: </label>
+                <input name="category" type="text" #category="ngModel" class="form-control" [(ngModel)]="re.category" required placeholder="Kategorija">
             </div>
             <br><br>
-            <label for="balcony" class="lab">Balkon: </label>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" type="radio" name="balcony" ngModel #balcony="ngModel" name="balcony" value="da" checked>
-                <label class="form-check-label" for="balcony">Da</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input form-check-inline" type="radio" name="balcony" ngModel #balcony="ngModel" name="balcony" value="ne">
-                <label class="form-check-label" for="balcony">Ne</label>
+            <div class="form-group">
+                <label for="floor" class="lab">Sprat: </label>
+                <input name="floor" type="number" #floor="ngModel" class="form-control" min=0 [(ngModel)]="re.floor" required placeholder="Sprat">
             </div>
             <br><br>
-            <label class="lab" for="imageUrl">Slika: </label>
-            <input name="imageUrl" type="text" ngModel #category="ngModel" required placeholder="URL slike">
+            <div class="form-group">
+                <label for="area" class="lab">Povrsina: </label>
+                <input name="area" type="number" #area="ngModel" class="form-control" min=0 [(ngModel)]="re.area" required placeholder="m2">
+            </div>
             <br><br>
-            <label for="description" class="lab">Opis: </label>
-            <textarea name="description" ngModel #description="ngModel" cols="50" placeholder="Opis"></textarea>
+            <div class="form-group">
+                <label for="rooms" class="lab">Sobe: </label>
+                <input name="rooms" type="number" #rooms="ngModel" class="form-control" min=0 [(ngModel)]="re.rooms" required placeholder="Sobe">
+            </div>
+            <br><br>
+            <div class="form-group">
+                <label for="bathrooms" class="lab">Kupatila: </label>
+                <input name="bathrooms" type="number" #bathrooms="ngModel" class="form-control" min=0 [(ngModel)]="re.bathrooms" required placeholder="Kupatila">
+            </div>
+            <br><br>
+            <div class="form-group">
+                <label for="totalFloors" class="lab">Ukupno spratova: </label>
+                <input name="totalFloors" type="number" #totalFloors="ngModel" class="form-control" min=0 [(ngModel)]="re.totalFloors" required placeholder="Ukupno spratova">
+            </div>
+            <br><br>
+            <div class="form-check">
+                <label for="elevator" class="lab">Lift: </label>
+                <select name="elevator" class="form-control" #elevator="ngModel" [(ngModel)]="re.elevator" placeholder="Izaberi...">
+                    <option selected value='' disabled>Izaberi...</option>
+                    <option value=" true ">Da</option>
+                    <option value=" false ">Ne</option>
+                </select>
+            </div>
 
             <br><br>
-            <button type="submit" [disabled]="!realEstateForm.value">Sacuvaj</button>
+            <div class="form-check">
+                <label for="balcony" class="lab">Balkon: </label>
+                <select name="balcony" class="form-control" #balcony="ngModel" [(ngModel)]="re.balcony" placeholder="Izaberi...">
+                    <option selected value='' disabled>Izaberi...</option>
+                    <option value=" true ">Da</option>
+                    <option value=" false ">Ne</option>
+                </select>
+            </div>
+            <br><br>
+            <div class="form-group ">
+                <label class="lab " for="imageUrl ">Slika: </label>
+                <input name="imageUrl " type="text " class="form-control " #imageUrl="ngModel" [(ngModel)]="re.imageUrl " required placeholder="URL slike ">
+            </div>
+            <br><br>
+            <div class="form-group ">
+                <label for="description " class="lab ">Opis: </label>
+                <textarea name="description " class="form-control " #description="ngModel" [(ngModel)]="re.description " cols="50 " placeholder="Opis "></textarea>
+            </div>
+            <br><br>
+            <div class="form-row ">
+                <button type="submit " class="btn btn-primary " [disabled]="!addRealEstateForm.form.valid">Sacuvaj</button>
+            </div>
             <br><br>
         </form>
-        <!-- <span style="color: white;">{{realEstateForm.value | json}}</span> -->
+        <div [hidden]="!submitted">
+            <p>Uspesno kreirano!</p>
+            <div class="form-row ">
+                <button type="submit " class="btn btn-primary " (click)="newRealEstate();">Nastavi</button>
+            </div>
+        </div>
     </div>
 </div>
