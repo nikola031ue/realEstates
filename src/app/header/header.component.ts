@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  
+  public show: boolean = false;
+  
+  public showLogOut: boolean = true;
+  
+  constructor(private log: LoginComponent) { }
 
   ngOnInit(): void {
+    this.show = this.log.isLogIn;
+  }
+  
+  logOut():void {
+    if (localStorage.getItem("token")) {
+      localStorage.removeItem("token");
+    }
   }
 
 }

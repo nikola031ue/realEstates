@@ -80,7 +80,7 @@ router.get('/listAll', function(req, res, next) {
 
 router.get('/listByCategory', function(req, res, next) {
     const category = req.query.category;
-    realEstateModel.find({ category: category }, function(err, response) {
+    realEstateModel.find({ area: category }, function(err, response) {
         if (err) {
             res.send('err');
         } else {

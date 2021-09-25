@@ -3,64 +3,94 @@
 
         <h2 class="lab">Dodaj nekretninu</h2>
         <br><br>
-        <form #addRealEstateForm="ngForm" novalidate *ngIf="!submitted" (ngSubmit)="addRe()">
+        <form #addRealEstateForm="ngForm" *ngIf="!submitted" (ngSubmit)="addRealE(addRealEstateForm)">
             <div class="form-group">
                 <label for="title" class="lab">Naziv: </label>
-                <input name="title" type="text" #title="ngModel" class="form-control" [(ngModel)]="re.title" required placeholder="Naziv">
+                <input name="title" type="text" #title="ngModel" class="form-control" ngModel [(ngModel)]="re.title" required placeholder="Naziv">
+            </div>
+            <div class="error" *ngIf="(title.dirty || message) && title.invalid">
+                Naziv je obavezan
             </div>
             <br><br>
             <h4 class="lab">Adresa </h4>
             <br><br>
             <div class="form-group">
                 <label class="lab" for="address">Ulica: </label>
-                <input name="address" type="text" #address="ngModel" class="form-control" [(ngModel)]="re.address" required placeholder="Ulica">
+                <input name="address" type="text" #address="ngModel" class="form-control" ngModel [(ngModel)]="re.address" required placeholder="Ulica">
+            </div>
+            <div class="error" *ngIf="(address.dirty || message) && address.invalid">
+                Adresa je obavezna
             </div>
             <br><br>
             <div class="form-group">
                 <label class="lab" for="city">Grad: </label>
-                <input name="city" type="text" #city="ngModel" class="form-control" [(ngModel)]="re.city" required placeholder="Grad">
+                <input name="city" type="text" #city="ngModel" class="form-control" ngModel [(ngModel)]="re.city" required placeholder="Grad">
+            </div>
+            <div class="error" *ngIf="(city.dirty || message) && city.invalid">
+                Grad je obavezan
             </div>
             <br><br>
             <div class="form-group">
                 <label class="lab" for="contact">Kontakt: </label>
-                <input name="contact" type="text" #contact="ngModel" class="form-control" [(ngModel)]="re.contact" required placeholder="Kontakt">
+                <input name="contact" type="text" #contact="ngModel" class="form-control" ngModel [(ngModel)]="re.contact" required placeholder="Kontakt">
+            </div>
+            <div class="error" *ngIf="(contact.dirty || message) && contact.invalid">
+                Kontakt je obavezan
             </div>
             <br><br>
             <h4 class="lab">Karakteristike </h4>
             <br><br>
             <div class="form-group">
                 <label class="lab" for="category">Kategorija: </label>
-                <input name="category" type="text" #category="ngModel" class="form-control" [(ngModel)]="re.category" required placeholder="Kategorija">
+                <input name="category" type="text" #category="ngModel" class="form-control" ngModel [(ngModel)]="re.category" required placeholder="Kategorija">
+            </div>
+            <div class="error" *ngIf="(category.dirty || message) && category.invalid">
+                Kategorija je obavezna
             </div>
             <br><br>
             <div class="form-group">
                 <label for="floor" class="lab">Sprat: </label>
-                <input name="floor" type="number" #floor="ngModel" class="form-control" min=0 [(ngModel)]="re.floor" required placeholder="Sprat">
+                <input name="floor" type="number" #floor="ngModel" class="form-control" min=0 ngModel [(ngModel)]="re.floor" required placeholder="Sprat">
+            </div>
+            <div class="error" *ngIf="(floor.dirty || message) && floor.invalid">
+                Sprat je obavezan
             </div>
             <br><br>
             <div class="form-group">
                 <label for="area" class="lab">Povrsina: </label>
-                <input name="area" type="number" #area="ngModel" class="form-control" min=0 [(ngModel)]="re.area" required placeholder="m2">
+                <input name="area" type="number" #area="ngModel" class="form-control" min=0 ngModel [(ngModel)]="re.area" required placeholder="m2">
+            </div>
+            <div class="error" *ngIf="(area.dirty || message) && area.invalid">
+                Povrsina je obavezna
             </div>
             <br><br>
             <div class="form-group">
                 <label for="rooms" class="lab">Sobe: </label>
-                <input name="rooms" type="number" #rooms="ngModel" class="form-control" min=0 [(ngModel)]="re.rooms" required placeholder="Sobe">
+                <input name="rooms" type="number" #rooms="ngModel" class="form-control" min=0 ngModel [(ngModel)]="re.rooms" required placeholder="Sobe">
+            </div>
+            <div class="error" *ngIf="(rooms.dirty || message) && rooms.invalid">
+                Broj soba je obavezan
             </div>
             <br><br>
             <div class="form-group">
                 <label for="bathrooms" class="lab">Kupatila: </label>
-                <input name="bathrooms" type="number" #bathrooms="ngModel" class="form-control" min=0 [(ngModel)]="re.bathrooms" required placeholder="Kupatila">
+                <input name="bathrooms" type="number" #bathrooms="ngModel" class="form-control" min=0 ngModel [(ngModel)]="re.bathrooms" required placeholder="Kupatila">
+            </div>
+            <div class="error" *ngIf="(bathrooms.dirty || message) && bathrooms.invalid">
+                Broj kupatila je obavezan
             </div>
             <br><br>
             <div class="form-group">
                 <label for="totalFloors" class="lab">Ukupno spratova: </label>
-                <input name="totalFloors" type="number" #totalFloors="ngModel" class="form-control" min=0 [(ngModel)]="re.totalFloors" required placeholder="Ukupno spratova">
+                <input name="totalFloors" type="number" #totalFloors="ngModel" class="form-control" min=0 ngModel [(ngModel)]="re.totalFloors" required placeholder="Ukupno spratova">
+            </div>
+            <div class="error" *ngIf="(totalFloors.dirty || message) && totalFloors.invalid">
+                Broj spratova je obavezan
             </div>
             <br><br>
             <div class="form-check">
                 <label for="elevator" class="lab">Lift: </label>
-                <select name="elevator" class="form-control" #elevator="ngModel" [(ngModel)]="re.elevator" placeholder="Izaberi...">
+                <select name="elevator" class="form-control" #elevator="ngModel" ngModel [(ngModel)]="re.elevator" placeholder="Izaberi...">
                     <option selected value='' disabled>Izaberi...</option>
                     <option value=" true ">Da</option>
                     <option value=" false ">Ne</option>
@@ -70,7 +100,7 @@
             <br><br>
             <div class="form-check">
                 <label for="balcony" class="lab">Balkon: </label>
-                <select name="balcony" class="form-control" #balcony="ngModel" [(ngModel)]="re.balcony" placeholder="Izaberi...">
+                <select name="balcony" class="form-control" #balcony="ngModel" ngModel [(ngModel)]="re.balcony" placeholder="Izaberi...">
                     <option selected value='' disabled>Izaberi...</option>
                     <option value=" true ">Da</option>
                     <option value=" false ">Ne</option>
@@ -79,12 +109,18 @@
             <br><br>
             <div class="form-group ">
                 <label class="lab " for="imageUrl ">Slika: </label>
-                <input name="imageUrl " type="text " class="form-control " #imageUrl="ngModel" [(ngModel)]="re.imageUrl " required placeholder="URL slike ">
+                <input name="imageUrl " type="text " class="form-control " #imageUrl="ngModel" ngModel [(ngModel)]="re.imageUrl " required placeholder="URL slike ">
+            </div>
+            <div class="error" *ngIf="(imageUrl.dirty || message) && imageUrl.invalid">
+                Slika je obavezna
             </div>
             <br><br>
             <div class="form-group ">
                 <label for="description " class="lab ">Opis: </label>
-                <textarea name="description " class="form-control " #description="ngModel" [(ngModel)]="re.description " cols="50 " placeholder="Opis "></textarea>
+                <textarea name="description " class="form-control " #description="ngModel" ngModel [(ngModel)]="re.description " cols="50 " placeholder="Opis " required></textarea>
+            </div>
+            <div class="error" *ngIf="(description.dirty || message) && description.invalid">
+                Opis je obavezan
             </div>
             <br><br>
             <div class="form-row ">

@@ -12,8 +12,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ViewRealEstateComponent } from './view-real-estate/view-real-estate.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RealEstateService } from './service/real-estate.service';
+import { TokenInterceptor } from './service/token-interceptor';
+import { AuthGuard } from './guard/auth.guard';
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { RealEstateService } from './service/real-estate.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [RealEstateService],
+  providers: [LoginComponent, AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

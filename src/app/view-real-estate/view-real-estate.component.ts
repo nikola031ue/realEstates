@@ -12,12 +12,9 @@ import { RealEstateService } from '../service/real-estate.service';
 })
 export class ViewRealEstateComponent implements OnInit {
   
-  public id;
-  public realEstates$: RealEstate[] = [];
+  public id: string;
   errorMsg: any;
   public re: any;
-  public fin;
-  baseURL = 'http://localhost/';
 
   constructor(private res: RealEstateService, private http: HttpClient,
     private route: ActivatedRoute) {}

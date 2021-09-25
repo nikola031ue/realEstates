@@ -12,7 +12,7 @@ import { RealEstateService } from '../service/real-estate.service';
 })
 export class AddRealEstateComponent implements OnInit {
   
-
+  public message: string = "";
   // public id: string = "112121";
   // public title: string = "";
   // public imageUrl: string = "";
@@ -48,10 +48,6 @@ export class AddRealEstateComponent implements OnInit {
     this.save();
   }
 
-  goBack(): void{
-    
-  }
-
   private save(): void {
     console.log("Nakon klika");
     console.log(this.re);
@@ -60,6 +56,14 @@ export class AddRealEstateComponent implements OnInit {
     this.service.addRealEstate(this.re).subscribe(res => { console.log(res);});
   }
   
+  addRealE(realEstateForm) {
+    console.log(realEstateForm);
+    const realEstate: RealEstate = realEstateForm.value.realEstate;
+    this.service.addRealEstate(realEstate).subscribe((res) => {
+      alert("created");
+    })
+  }
+
   onSubmit() {
     // this.re.id = this.id;
     // this.re.title = this.title;
@@ -102,34 +106,4 @@ export class AddRealEstateComponent implements OnInit {
   
     // this.submitted = true;
   }
-  
-  // profileForm = this.fb.group({
-  //   firstName: ['', Validators.required],
-  //   lastName: [''],
-  //   address: this.fb.group({
-  //     street: [''],
-  //     city: [''],
-  //     state: [''],
-  //     zip: ['']
-  //   }),
-  //   aliases: this.fb.array([
-  //     this.fb.control('')
-  //   ])
-  // });
-
-
-  // updateProfile() {
-  //   this.profileForm.patchValue({
-  //     firstName: 'Nancy',
-  //     address: {
-  //       street: '123 Drew Street'
-  //     }
-  //   });
-  // }
-
-  // realEstateForm() {
-
-  // }
-  
-
 }

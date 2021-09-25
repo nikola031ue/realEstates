@@ -6,6 +6,7 @@
 }
 
 .lab,
+.error,
 .form-check-label {
     display: inline-block;
     clear: left;
