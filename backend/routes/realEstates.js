@@ -37,7 +37,8 @@ router.post('/add', function(req, res, next) {
     // status: 200
     // statusText: "OK"
     // url: "http://localhost:3000/realEstates/add"
-    let newRealEstate = new realEstateModel({
+    const newRealEstate = new realEstateModel({
+        _id: new mongoose.Types.ObjectId,
         title: req.body.title,
         imageUrl: req.body.imageUrl,
         address: req.body.address,
@@ -55,13 +56,23 @@ router.post('/add', function(req, res, next) {
         description: req.body.description
     });
 
-    newRealEstate.save(function(err, newRealEstate) {
-        if (err) {
-            res.send('err');
-        } else {
-            res.send(newRealEstate);
-        }
+    newRealEstate.save().then(result => {
+            console.log(result);
+        })
+        .catch(err => console.log(err));
+
+    res.status(201).json({
+        message: "Handling POST requests to /realEstates",
+        createdRealEstate: newRealEstate
     });
+
+    // newRealEstate.save(function(err, newRealEstate) {
+    //     if (err) {
+    //         res.send('err');
+    //     } else {
+    //         res.send(newRealEstate);
+    //     }
+    // });
 
 
 });
@@ -102,31 +113,53 @@ router.get('/listById/:id', function(req, res, next) {
 
 });
 
-router.put('/update', function(req, res, next) {
-    const id = req.query.id;
-    const category = req.query.category;
+router.patch('/update/:id', function(req, res, next) {
+    const id = req.params.id;
+    // const price = req.query.price;
 
-    realEstateModel.findByIdAndUpdate(id, { category: category }, function(err, response) {
-        if (err) {
-            res.send('err');
-        } else {
-            res.send({ status: 200, resultsFound: response.length, realEstates: response });
-        }
-    });
+    realEstateModel.updateOne({ _id: id }, { $set: { price: req.body.price } })
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.send(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: err });
+        });
+
+    // realEstateModel.findByIdAndUpdate(id, { price: price }, function(err, response) {
+    //     if (err) {
+    //         res.send('err');
+    //     } else {
+    //         res.send(response);
+    //     }
+    // });
 
 });
 
-router.delete('/update', function(req, res, next) {
-    const id = req.query.id;
-    const category = req.query.category;
+router.delete('/delete/:id', function(req, res, next) {
+    const id = req.params.id;
 
-    realEstateModel.findByIdAndDelete(id, function(err, response) {
-        if (err) {
-            res.send('err');
-        } else {
-            res.send({ status: 200, resultsFound: response.length, realEstates: response });
-        }
-    });
+    realEstateModel.remove({ _id: id })
+        .exec()
+        .then(resuslt => {
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        })
+
+    // realEstateModel.findByIdAndDelete(id, function(err, response) {
+    //     if (err) {
+    //         res.send('err');
+    //     } else {
+    //         res.send({ status: 200, resultsFound: response.length, realEstates: response });
+    //     }
+    // });
 
 });
 

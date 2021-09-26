@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let realEstate = new Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: String
     },
@@ -32,7 +33,7 @@ let realEstate = new Schema({
     rooms: {
         type: Number
     },
-    totalFlors: {
+    totalFloors: {
         type: Number
     },
     bathrooms: {

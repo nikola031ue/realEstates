@@ -20,11 +20,27 @@ export class RealEstateService {
   }
 
   getRealEstate(_id: string): Observable<RealEstate> {
-    return this.http.get<RealEstate>(this.BACKEND_BASE + "/realEstates/listById/" + _id).pipe(res => { return res;});
+    return this.http.get<RealEstate>(this.BACKEND_BASE + "/realEstates/listById/" + _id)
+    .pipe(res => { 
+      return res;
+    });
   }
   
   addRealEstate(realEstate: any): Observable<any> {
     return this.http.post<any>(this.BACKEND_BASE + "/realEstates/add", realEstate);
+  }
+
+  changePrice(_id: string, newPrice: number): Observable<any> {
+    return this.http.patch(this.BACKEND_BASE + "/realEstates/update/" + _id, {
+      price: newPrice
+    });
+  }
+
+  deleteRealEstate(_id: string) {
+    return this.http.delete(this.BACKEND_BASE + "/realEstates/delete/" + _id)
+    .pipe(res => {
+      return res
+    });
   }
 
   // fetchRealEstates(): Observable<any>{

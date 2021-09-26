@@ -6,7 +6,6 @@
                 <span class="property" style="font-size: 24px;">, {{re.city}}</span>
             </p>
 
-            <p><span class="property">ID nekretnine: </span><span class="value">{{re._id}}</span></p>
         </div>
         <div id="upper-div-id">
             <div id="image-slider-id">
@@ -18,7 +17,7 @@
             <p><span class="property">Kvadratura</span><span class="value">{{re.area}}m<sup>2</sup></span></p>
             <p><span class="property">Cena</span><span class="value">{{re.price}}e</span></p>
             <p><span class="property">Sprat</span><span class="value">{{re.floor}}</span></p>
-            <p><span class="property">Ukupno spratova</span><span class="value">{{re.totalFlors}}</span></p>
+            <p><span class="property">Ukupno spratova</span><span class="value">{{re.totalFloors}}</span></p>
             <p><span class="property">Broj soba</span><span class="value">{{re.rooms}}</span></p>
             <p><span class="property">Broj kupatila</span><span class="value">{{re.bathrooms}}</span></p>
             <hr>
@@ -35,5 +34,33 @@
             <p><span class="property">Telefon</span><span class="value">{{re.contact}}</span></p>
             <hr>
         </div>
+        <div class="col" *ngIf="!change">
+            <button type="button" class="btn btn-primary" (click)="change=true;">Izmeni cenu</button>
+            <br><br>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary" (click)="delete()">Obrisi</button>
+            <br><br>
+        </div>
+        <div class="form-group" *ngIf="change">
+            <form (ngSubmit)="changePrice()">
+                <div class="col">
+                    <label for="newPrice" class="property">Nova cena: </label>
+                    <br>
+                    <input name="newPrice" type="number" class="form-control" min=0 ngModel [(ngModel)]="newPrice" required placeholder="Nova cena">
+                </div>
+                <br>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary" (onSubmit)="changePrice()">Sacuvaj izmenu</button>
+                </div>
+                <br>
+            </form>
+        </div>
     </div>
 </div>
+
+<script>
+    window.onbeforeunload = function() {
+        window.scrollTo(0, 0);
+    };
+</script>
