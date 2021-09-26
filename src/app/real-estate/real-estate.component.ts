@@ -13,11 +13,9 @@ export class RealEstateComponent implements OnInit {
   
   public realEstates$: RealEstate[] = [];
   errorMsg: any;
-
-  @Input() groupFilters: Object;
-  @Input() searchByKeyword: string;
-  realEstates: any[] = [];
-  filteredRealEstates: any[] = [];
+  public minPrice: any;
+  public maxPrice: any;
+  public empty: boolean = false;
   isSearch: boolean;
   constructor(private _realEstate: RealEstateService, private router: Router) { }
 
@@ -26,47 +24,21 @@ export class RealEstateComponent implements OnInit {
       .subscribe(data => {
         this.realEstates$ = data;
       });
-    
-    // this.loadRealEstates();
   }
 
-  // filterRealEstatesList(filters: any, realEstates: any): void {
-  //   this.filteredRealEstates = this.realEstates;
-  //   const keys = Object.keys(filters);
-  //   const filterRealEstate = realEstate => {
-  //     let result = keys.map(key => {
-  //       if (!~key.indexOf('area')) {
-  //         if (realEstate[key]) {
-  //           return String(realEstate[key]).toLowerCase().startsWith(String(filters[key]).toLowerCase())
-  //         } else {
-  //           return false;
-  //         }
-  //       }
-  //     });
-  //     result = result.filter(it => it !== undefined);
-  //     if (filters['areaTo'] && filters['areaFrom']) {
-  //       if (realEstate['area']) {
-  //         if (+realEstate['area'] >= +filters['areaFrom'] && +realEstate['area'] <= +filters['areaTo']) {
-  //           result.push(true);
-  //         } else {
-  //           result.push(false);
-  //         }
-  //       } else {
-  //         result.push(false);
-  //       }
-  //     }
-  //     return result.reduce((acc, cur: any) => { return acc & cur }, 1)
-  //   }
-  //   this.filteredRealEstates = this.realEstates.filter(filterRealEstate);
-  // }
+  search() {
+    this._realEstate.search(this.minPrice, this.maxPrice).subscribe(data => {
+      console.log(data);
+      this.realEstates$ = data;
+    },
+      error => this.errorMsg = error);
+    
+    if (!this.realEstates$) {
+      this.empty = true;
+    }
+  }
 
-  // loadRealEstates(): void{
-  //   this._realEstate.fetchRealEstates().subscribe(realEstates => this.realEstates = realEstates);
-  //   this.filteredRealEstates = this.filteredRealEstates.length > 0 ? this.filteredRealEstates : this.realEstates;
-  // }
-
-
-  onSelect(re) {
+  onSelect(re:any) {
     this.router.navigate(['/home', re._id]);
   }
 }

@@ -35,18 +35,20 @@ export class ViewRealEstateComponent implements OnInit {
   }
 
   changePrice() {
-    this.change = false;
-    this.res.changePrice(this.id, this.newPrice).subscribe(data => {
-      this.afterChange = data;
-    }, 
-      error => this.errorMsg = error);
-    
-      this.res.getRealEstate(this.id)
-      .subscribe(data => {
-        this.re = data;
-      }, 
+    if (this.authGuard.canActivate(this.route.snapshot)) {
+      this.change = false;
+      this.res.changePrice(this.id, this.newPrice).subscribe(data => {
+        this.afterChange = data;
+      },
         error => this.errorMsg = error);
-    this.router.navigate(['/home/:id', this.id]);
+      
+      this.res.getRealEstate(this.id)
+        .subscribe(data => {
+          this.re = data;
+        },
+          error => this.errorMsg = error);
+      this.router.navigate(['/home/:id', this.id]);
+    }
   }
 
   delete() {

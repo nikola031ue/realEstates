@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   public username: string = "";
   public password:string = "";
   public isLogIn: boolean = false;
+  public error: boolean = false;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void { }
@@ -23,6 +25,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("token", resp.token);
       this.isLogIn = true;
       this.router.navigate(['/home']);
+    },
+      error => {
+        this.error = true;
     })
   }
 }

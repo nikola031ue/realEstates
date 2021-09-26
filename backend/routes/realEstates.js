@@ -4,6 +4,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const realEstateModel = require('../model/realEstate-model');
+const { response } = require('express');
 
 /* GET users listing. */
 
@@ -89,18 +90,22 @@ router.get('/listAll', function(req, res, next) {
 
 });
 
-router.get('/listByCategory', function(req, res, next) {
-    const category = req.query.category;
-    realEstateModel.find({ area: category }, function(err, response) {
-        if (err) {
-            res.send('err');
-        } else {
-            res.send({ status: 200, resultsFound: response.length, realEstates: response });
-        }
-    });
+router.post('/search', function(req, res, next) {
+    let min = req.query.minPrice;
+    let max = req.query.maxPrice;
+    // realEstateModel.find({ price: { $gte: min, $lte: max } }, function(err, response) {
+    //     if (err) {
+    //         res.send('err');
+    //     } else {
+    //         res.send(response);
+    //     }
+    // });
+    const r = realEstateModel.find({})
+        .where('price').gte(min).lte(max).exec();
+    res.send(r);
 
 });
-// moze i vise argumenata gde je idQuery ide JSON sa parametrima
+
 router.get('/listById/:id', function(req, res, next) {
     const idQuery = req.params.id;
     realEstateModel.findById(idQuery, function(err, response) {
@@ -127,15 +132,6 @@ router.patch('/update/:id', function(req, res, next) {
             console.log(err);
             res.status(500).json({ error: err });
         });
-
-    // realEstateModel.findByIdAndUpdate(id, { price: price }, function(err, response) {
-    //     if (err) {
-    //         res.send('err');
-    //     } else {
-    //         res.send(response);
-    //     }
-    // });
-
 });
 
 router.delete('/delete/:id', function(req, res, next) {
@@ -152,15 +148,6 @@ router.delete('/delete/:id', function(req, res, next) {
                 error: err
             });
         })
-
-    // realEstateModel.findByIdAndDelete(id, function(err, response) {
-    //     if (err) {
-    //         res.send('err');
-    //     } else {
-    //         res.send({ status: 200, resultsFound: response.length, realEstates: response });
-    //     }
-    // });
-
 });
 
 module.exports = router;

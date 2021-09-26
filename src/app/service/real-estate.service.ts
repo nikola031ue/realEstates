@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RealEstate } from '../models/realEstate';
 import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,7 @@ import { Observable, Subject } from 'rxjs';
 export class RealEstateService {
   BACKEND_BASE = "http://localhost:3000";
   
-  // setGroupFilter = new Subject<any>();
-  // getGroupFilter = this.setGroupFilter.asObservable();
-
+ 
   constructor(private http: HttpClient) { }
 
   
@@ -43,8 +42,12 @@ export class RealEstateService {
     });
   }
 
-  // fetchRealEstates(): Observable<any>{
-  //   return this.http.get<RealEstate[]>(this.BACKEND_BASE + "/realEstates/listByCategory");
-  // }
+  search(min: number, max: number): Observable<any> {
+    return this.http.post(this.BACKEND_BASE + "/realEstates/search", {
+      minPrice: min,
+      maxPrice: max
+    });
+    // return null;
+  }
 
 }

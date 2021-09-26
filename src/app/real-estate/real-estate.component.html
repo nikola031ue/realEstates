@@ -1,4 +1,16 @@
 <div class="col">
+    <div class="form-group">
+        <form class="form-inline my-2 my-lg-0" (ngSubmit)="search()">
+            <br>
+            <input class="form-control mr-sm-2" type="number" placeholder="Cena od:" name="minPrice" ngModel [(ngModel)]="minPrice">
+            <input class="form-control mr-sm-2" type="number" placeholder="Cena do:" name="maxPrice" ngModel [(ngModel)]="maxPrice">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pretrazi</button>
+            <br>
+        </form>
+    </div>
+    <div *ngIf="empty">
+        <p>Nema stanova sa zadatom pretragom</p>
+    </div>
     <div (click)="onSelect(realEstate)" *ngFor="let realEstate of realEstates$">
         <div>
             <div class="col-md-12 realEstate">
