@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { RealEstate } from '../models/realEstate';
 import { RealEstateService } from '../service/real-estate.service';
 import { Router } from '@angular/router';
+import { max } from 'rxjs/operators';
 
 @Component({
   selector: 'app-real-estate',
@@ -17,6 +18,8 @@ export class RealEstateComponent implements OnInit {
   public maxPrice: any;
   public empty: boolean = false;
   isSearch: boolean;
+  public searchRealEstates: RealEstate[] = [];
+
   constructor(private _realEstate: RealEstateService, private router: Router) { }
 
   ngOnInit(): void {
@@ -27,15 +30,28 @@ export class RealEstateComponent implements OnInit {
   }
 
   search() {
-    this._realEstate.search(this.minPrice, this.maxPrice).subscribe(data => {
-      console.log(data);
-      this.realEstates$ = data;
-    },
-      error => this.errorMsg = error);
     
-    if (!this.realEstates$) {
-      this.empty = true;
+    for (let re of this.realEstates$) {
+      if (re.price >= this.minPrice && re.price <= this.maxPrice) {
+        this.searchRealEstates.push(re);
+      }
     }
+    if (this.searchRealEstates.length == 0) {
+        this.empty = true;
+    } else {
+      this.realEstates$ = this.searchRealEstates;
+    }
+
+  }
+
+  cancel() {
+    this._realEstate.getRealEstates()
+      .subscribe(data => {
+        this.realEstates$ = data;
+      });
+    
+    this.minPrice = 0;
+    this.maxPrice = 0;
   }
 
   onSelect(re:any) {

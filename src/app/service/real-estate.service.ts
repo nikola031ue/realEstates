@@ -47,7 +47,6 @@ export class RealEstateService {
       minPrice: min,
       maxPrice: max
     });
-    // return null;
   }
 
 }

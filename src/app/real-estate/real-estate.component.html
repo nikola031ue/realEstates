@@ -7,8 +7,10 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pretrazi</button>
             <br>
         </form>
+        <br>
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="cancel()" type="button">Otkazi</button>
     </div>
-    <div *ngIf="empty">
+    <div *ngIf="empty === true">
         <p>Nema stanova sa zadatom pretragom</p>
     </div>
     <div (click)="onSelect(realEstate)" *ngFor="let realEstate of realEstates$">
