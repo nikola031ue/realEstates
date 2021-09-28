@@ -1,4 +1,6 @@
-# Nekretnine
+# Nekretnine (Real estates)
+
+A university project for course Advanced Web Development. The project theme is a real estates website for agency that would allow users to look up real estates for purchase or rent. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
